@@ -1,9 +1,7 @@
 package org.example;
 
-import org.example.logic.Bullet;
-import org.example.logic.Enemy;
-import org.example.logic.Player;
-import org.example.logic.Restore;
+import org.example.logic.*;
+
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,7 +13,7 @@ public class GameLogic implements KeyListener {
     Player player;
     Random random;
     int windowWidth, windowHeight;
-    boolean gameActive;
+    boolean gameActive, gamePause;
     int randomRestoreNumber;
     int enemySpawnInterval, enemySpawnTimer, ammoTimer, ammoInterval = 10, fuelDrainTimer, fuelDrainInterval = 100;
     int killCount, maxKills, nowKills;
@@ -127,10 +125,10 @@ public class GameLogic implements KeyListener {
         }
     }
     private void handleCollectAmmo(Restore ammoBunch){
-        if(player.getAmmo() < 100) {
+        if(player.getBulletStack() < 100) {
             ammoBunchesToRemove.add(ammoBunch);
-            int ammoToAdd = Math.min(5, 100 - player.getAmmo());
-            player.setAmmo(player.getAmmo() + ammoToAdd);
+            int ammoToAdd = Math.min(5, 100 - player.getBulletStack());
+            player.setBulletStack(player.getBulletStack() + ammoToAdd);
         }
     }
     private void handleCollectHeal(Restore heal){
@@ -205,9 +203,9 @@ public class GameLogic implements KeyListener {
     private void updateBullet(){
         ammoTimer++;
         if(player.isShoot() && ammoInterval <= ammoTimer){
-            if(player.getAmmo() > 0){
+            if(player.getBulletStack() > 0){
                 addBullet();
-                player.setAmmo(player.getAmmo() - 3);
+                player.setBulletStack(player.getBulletStack() - 3);
 
             }
             player.setShoot(false);
@@ -276,9 +274,10 @@ public class GameLogic implements KeyListener {
         player.setFuel(100);
         player.setCash(0);
         killCount = 0;
-        player.setAmmo(100);
+        player.setBulletStack(100);
         player.setHealth(90);
         shipShieldActive = false;
+        gamePause = false;
 
     }
 
@@ -306,6 +305,12 @@ public class GameLogic implements KeyListener {
             if(keys == KeyEvent.VK_ESCAPE){
                 gameActive = false;
             }
+            if(keys == KeyEvent.VK_P && !gamePause) {
+                gamePause = true;
+            }else if(keys == KeyEvent.VK_P){
+                gamePause = false;
+            }
+
             if(keys == KeyEvent.VK_SHIFT && player.getCash() >= 30 && !shipShieldActive){
                 shipShieldActive = true;
                 player.setCash(player.getCash() - 30);

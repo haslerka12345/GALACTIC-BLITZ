@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable, MouseListener {
     public void run() {
 
         while (true) {
-            if (logic.isGameActive()) {
+            if (logic.isGameActive() && !logic.gamePause) {
                 logic.update();
             }
             repaint();

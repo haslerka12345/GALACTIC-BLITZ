@@ -7,11 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
 
 public class Player extends Entity implements KeyListener, MouseMotionListener {
     private double rotationAngle;
-    private int health, fuel, ammo, cash;
+    private int health, fuel, bulletStack, cash;
     private final double acceleration = 0.3;
     private double velocityY;
     private double velocityX;
@@ -175,12 +174,12 @@ public class Player extends Entity implements KeyListener, MouseMotionListener {
         this.fuel = fuel;
     }
 
-    public int getAmmo() {
-        return ammo;
+    public int getBulletStack() {
+        return bulletStack;
     }
 
-    public void setAmmo(int ammo) {
-        this.ammo = ammo;
+    public void setBulletStack(int bulletStack) {
+        this.bulletStack = bulletStack;
     }
 
     public int getCash() {

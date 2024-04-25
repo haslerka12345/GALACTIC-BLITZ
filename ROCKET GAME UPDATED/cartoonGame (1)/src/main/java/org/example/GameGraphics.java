@@ -4,11 +4,10 @@ import org.example.logic.Bullet;
 import org.example.logic.Enemy;
 import org.example.logic.Restore;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class GameGraphics {
-    ImageLoader killsLastRound, mostKills, labelGame1, shipShieldGame, background, HelpTab, pressShift,  enemySpawnSign;
+    ImageLoader killsLastRound, mostKills, labelGame1, shipShieldGame, background, HelpTab, pressShift,  enemySpawnSign, pause;
     GameLogic logic;
 
     GameGraphics(GameLogic logic){
@@ -22,6 +21,7 @@ public class GameGraphics {
         shipShieldGame = new ImageLoader("shipShield.png");
         killsLastRound = new ImageLoader("killsLastRound.png");
         mostKills = new ImageLoader("MaxKills.png");
+        pause = new ImageLoader("PAUSED.png");
     }
 
 
@@ -48,7 +48,7 @@ public class GameGraphics {
             g.fillRect(780, 590 - logic.getPlayer().getFuel(), 10, logic.getPlayer().getFuel());
 
             g.drawRect(10, 490, 10, 100);
-            g.fillRect(10, 590 - logic.getPlayer().getAmmo(), 10, logic.getPlayer().getAmmo());
+            g.fillRect(10, 590 - logic.getPlayer().getBulletStack(), 10, logic.getPlayer().getBulletStack());
 
             g.drawRect(10, 10, 90, 10);
             g.fillRect(10, 10, logic.getPlayer().getHealth(), 10);
@@ -57,6 +57,9 @@ public class GameGraphics {
             g.drawString("Cash: " + logic.getPlayer().getCash() + "$", 650,30);
             if(logic.getPlayer().getCash() >= 30){
                 g.drawImage(pressShift.getImage(),0,-20,logic.getWindowWidth(), logic.getWindowHeight(), null);
+            }
+            if(logic.gamePause){
+                g.drawImage(pause.getImage(), 0,0,logic.getWindowWidth(), logic.getWindowHeight(), null);
             }
 
         }
