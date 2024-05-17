@@ -2,7 +2,6 @@ package org.example.logic;
 
 import org.example.ImageLoader;
 
-import java.awt.*;
 
 public class Restore extends Entity {
     public Restore(String file, int x, int y, int width, int height){

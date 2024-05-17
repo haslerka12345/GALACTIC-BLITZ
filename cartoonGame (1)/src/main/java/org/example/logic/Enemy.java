@@ -7,14 +7,11 @@ import java.util.Random;
 
 public class Enemy extends Entity{
     Random random;
-    int enemySpawnSide, enemyType;
 
     public Enemy(int windowWidth, int windowHeight, String file){
         random = new Random();
-        enemySpawnSide = random.nextInt(1, 5);
-        enemyType = random.nextInt(1, 4);
 
-        switch (enemySpawnSide) {
+        switch (random.nextInt(1, 5)) {
             case 1:
                 x = random.nextInt(0, windowWidth + 1);
                 y = -100;

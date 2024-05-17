@@ -164,9 +164,7 @@ public class Player extends Entity implements KeyListener, MouseMotionListener{
             case KeyEvent.VK_A -> setLeft(false);
             case KeyEvent.VK_D -> setRight(false);
             case KeyEvent.VK_SPACE -> setShoot(false);
-
         }
-
     }
 
     @Override

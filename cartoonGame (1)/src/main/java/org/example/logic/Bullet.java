@@ -2,11 +2,10 @@ package org.example.logic;
 
 import org.example.ImageLoader;
 
-import java.awt.*;
-
 public class Bullet extends Entity {
     double rotationAngle;
     double velocityX;
+    int mouseX, mouseY;
     double velocityY;
     public Bullet(double rotationAngle, int x, int y, String file){
         width = 10;

@@ -23,10 +23,12 @@ public class GameLogic implements KeyListener {
     GameLogic(int windowWidth, int windowHeight){
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
+        initialize();
+    }
 
+    private void initialize(){
         player = new Player(windowWidth/2,windowHeight/2, 80, 50, "player2.png", "player.png");
         random = new Random();
-
         bullets = new ArrayList<>();
         bulletsToRemove = new ArrayList<>();
         enemies = new ArrayList<>();
@@ -38,6 +40,7 @@ public class GameLogic implements KeyListener {
         heals = new ArrayList<>();
         healsToRemove = new ArrayList<>();
     }
+
 
     public void update(){
         collision();
@@ -205,18 +208,15 @@ public class GameLogic implements KeyListener {
             if(player.getBulletStack() > 0){
                 addBullet();
                 player.setBulletStack(player.getBulletStack() - 3);
-
             }
             player.setShoot(false);
             ammoTimer = 0;
         }else{
             player.setShoot(false);
         }
-
         for(Bullet bullet : bullets){
             bullet.move();
         }
-
     }
     private void addBullet(){
         bullets.add(new Bullet(player.getRotationAngle(), player.centerX() , player.centerY(), "bullet.png"));
