@@ -14,7 +14,7 @@ public class ImageLoader {
     }
     private void loadImage(String file){
         try {
-            image = ImageIO.read(new File("src/main/resources/" + file));
+            image =ImageIO.read(getClass().getResource("/" + file));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
