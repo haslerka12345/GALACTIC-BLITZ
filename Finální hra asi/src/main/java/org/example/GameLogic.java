@@ -118,7 +118,7 @@ public class GameLogic implements KeyListener {
     private void handleCollectFuel(Restore fuelTank){
         if(player.getFuel() < 100){
             fuelsToRemove.add(fuelTank);
-            int fuelToAdd = Math.min(10, 100 - player.getFuel());
+            int fuelToAdd = Math.min(5, 100 - player.getFuel());
             player.setFuel(player.getFuel() + fuelToAdd);
         }
     }
